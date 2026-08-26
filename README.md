@@ -46,15 +46,17 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 
 **✂️ Best Background Removal Models** — [BiRefNet](#5-image-matting--background-removal) (MIT, highest quality/resolution) for general use; [U2-Net](#5-image-matting--background-removal) family (Apache-2.0) for subject-specific variants (Human, Cloth, Anime via IS-Net); [Silueta](#5-image-matting--background-removal) (~43 MB) when file size matters more than accuracy.
 
-**🎨 Best Image Generation Models** — [FLUX.1 \[schnell\]](#4-image-generation) for commercial use (Apache-2.0); [FLUX.1 \[dev\]](#4-image-generation) for max quality, non-commercial only.
+**🎨 Best Image Generation Models** — [FLUX.1 \[schnell\]](#4-image-generation) or [Qwen-Image](#4-image-generation) for commercial use (both Apache-2.0); [FLUX.1 \[dev\]](#4-image-generation) / [Stable Diffusion 3.5 Large](#4-image-generation) for max quality, non-commercial or under-$1M-revenue only; [HunyuanImage 3.0](#4-image-generation) for largest open model (80B/13B active).
 
 **🎙️ Best Speech-to-Text Models** — [Whisper large-v3](#6-audio--speech): Apache-2.0, multilingual, runs on CPU via `whisper.cpp`.
 
+**🗣️ Best Text-to-Speech Models** — [Kokoro-82M](#6-audio--speech) (Apache-2.0, <2 GB, real-time on CPU) for fully commercial use; [F5-TTS](#6-audio--speech) for zero-shot voice cloning (CC-BY-NC-4.0, research only).
+
 **📄 Best OCR Models** — [PaddleOCR-VL](#9-document-ai-ocr) (0.9B, Apache-2.0) and [OvisOCR2](#9-document-ai-ocr) (0.8B, Apache-2.0) for SOTA document parsing at sub-1B size; [GLM-OCR](#9-document-ai-ocr) (0.9B, MIT) for the easiest local/Ollama deployment.
 
-**🔍 Best Retrieval / Embedding Models** — [Qwen3-Embedding-0.6B](#7-retrieval) for multilingual instruction-aware retrieval; [BGE-M3](#7-retrieval) for dense+sparse+multi-vector RAG.
+**🔍 Best Retrieval / Embedding Models** — [Qwen3-Embedding-0.6B](#7-retrieval) or [nomic-embed-text-v1.5](#7-retrieval) for fully-permissive lightweight embeddings; [gte-Qwen2-7B-instruct](#7-retrieval) for top MTEB quality; [bge-reranker-v2-m3](#7-retrieval) (Apache-2.0) to rerank retrieved candidates.
 
-**🪶 Best Small Models** — [Phi-4-mini-instruct](#8-lightweight--edge-ai) (3.8B, MIT) for text-only edge; [Gemma 3 4B](#8-lightweight--edge-ai) for on-device multimodal.
+**🪶 Best Small Models** — [Phi-4-mini-instruct](#8-lightweight--edge-ai) (3.8B, MIT) for text-only edge; [Gemma 3 270M](#8-lightweight--edge-ai) or [Qwen3-0.6B](#8-lightweight--edge-ai) for sub-1B edge/mobile/browser deployment; [Gemma 3 4B](#8-lightweight--edge-ai) for on-device multimodal.
 
 **🔒 Best for Local / Private AI** — [Qwen3-32B](#1-general-ai) and [Qwen3-Coder-30B-A3B-Instruct](#2-coding): both Apache-2.0, run at ~24 GB VRAM quantized.
 
@@ -64,11 +66,11 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 
 | Tier | Recommended models |
 |---|---|
-| 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet, PaddleOCR-VL, OvisOCR2, GLM-OCR |
-| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s, Granite-4.1-8B, Seed-Coder-8B-Instruct, CodeGemma 7B |
-| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), ERNIE-4.5-21B-A3B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Devstral Small 2507 (Q4), Qwen2.5-Coder-32B-Instruct (Q4), StarCoder2-15B (Q4), Codestral 2 (Q4), Gemma 3 27B (Q4), FLUX.1 [dev] (quantized) |
-| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Mistral Large 3, Kimi K2 Instruct, Command A+, MiniMax-M2, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct *(multi-GPU or aggressive quantization at this tier)* |
-| 🍎 Apple Silicon | Whisper large-v3 (MLX/whisper.cpp), Qwen3-32B (MLX/GGUF), Phi-4-mini-instruct (MLX/GGUF) |
+| 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet, PaddleOCR-VL, OvisOCR2, GLM-OCR, Kokoro-82M, nomic-embed-text-v1.5, mxbai-embed-large-v1, Gemma 3 270M, SmolLM2-1.7B, Qwen3-0.6B, TinyLlama-1.1B |
+| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s, Granite-4.1-8B, Seed-Coder-8B-Instruct, CodeGemma 7B, F5-TTS, Llama 3.2 1B |
+| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), ERNIE-4.5-21B-A3B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Devstral Small 2507 (Q4), Qwen2.5-Coder-32B-Instruct (Q4), StarCoder2-15B (Q4), Codestral 2 (Q4), Gemma 3 27B (Q4), gte-Qwen2-7B-instruct, FLUX.1 [dev] (quantized), Qwen-Image (quantized), SDXL 1.0, Stable Diffusion 3.5 Large (quantized) |
+| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Mistral Large 3, Kimi K2 Instruct, Command A+, MiniMax-M2, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct, HunyuanImage 3.0 *(multi-GPU or aggressive quantization at this tier)* |
+| 🍎 Apple Silicon | Whisper large-v3 (MLX/whisper.cpp), Qwen3-32B (MLX/GGUF), Phi-4-mini-instruct (MLX/GGUF), SmolLM2-1.7B, Qwen3-0.6B |
 
 VRAM figures are approximate, quantization-dependent estimates for guidance only — verify against each model's official card before provisioning hardware.
 
@@ -174,10 +176,17 @@ Vision-language and other cross-modal models.
 |---|---:|---|---:|---|---|
 | [FLUX.1 \[schnell\]](https://huggingface.co/black-forest-labs/FLUX.1-schnell) | 12B | Text-to-Image | ~16 GB (fp16) / ~8 GB (quantized) | Apache-2.0 | Fast text-to-image generation, commercial use |
 | [FLUX.1 \[dev\]](https://huggingface.co/black-forest-labs/FLUX.1-dev) | 12B | Text-to-Image | ~24 GB (fp16) / ~12 GB (quantized) | FLUX.1 [dev] Non-Commercial License | Highest-quality open-weight text-to-image, research/personal use |
+| [Qwen-Image](https://huggingface.co/Qwen/Qwen-Image) | 20B (MMDiT) | Text-to-Image | ~24 GB (fp16) / ~12 GB (quantized) | Apache-2.0 | Complex text rendering (Chinese + English), infographics/posters/slides |
+| [Stable Diffusion 3.5 Large](https://huggingface.co/stabilityai/stable-diffusion-3.5-large) | 8B | Text-to-Image | ~24 GB (fp16) / ~12 GB (quantized) | Stability AI Community License (free under $1M annual revenue) | General text-to-image, non-commercial or small-business use |
+| [HunyuanImage 3.0](https://huggingface.co/tencent/HunyuanImage-3.0) | 80B total / 13B active (MoE) | Text-to-Image | Multi-GPU (>80 GB, quantized) | Tencent Hunyuan Community License (free commercial under 100M MAU) | Largest open text-to-image model, native autoregressive text+image |
+| [Stable Diffusion XL (SDXL) 1.0](https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0) | 3.5B base (6.6B w/ refiner) | Text-to-Image | ~12 GB (fp16) / ~6 GB (quantized) | CreativeML OpenRAIL++-M | Mature ecosystem, 1024×1024 native, widest fine-tune/LoRA support |
 
-- Both share the same 12B-parameter rectified-flow transformer from Black Forest Labs. **schnell** is distilled for few-step (1–4 step) fast inference and is Apache-2.0 (commercial use allowed); **dev** is the higher-fidelity guidance-distilled variant restricted to non-commercial use.
-- Black Forest Labs also offers **FLUX.1 Pro/Flex** (proprietary, API-only) and **FLUX.1 Kontext [dev]** (12B, image editing, same non-commercial license as [dev]).
-- Do not describe FLUX.1 [dev] as "open source" — it is **Open Weight** with commercial restrictions.
+- Both FLUX.1 variants share the same 12B-parameter rectified-flow transformer from Black Forest Labs. **schnell** is distilled for few-step (1–4 step) fast inference and is Apache-2.0 (commercial use allowed); **dev** is the higher-fidelity guidance-distilled variant restricted to non-commercial use. Black Forest Labs also offers **FLUX.1 Pro/Flex** (proprietary, API-only) and **FLUX.1 Kontext [dev]** (12B, image editing, same non-commercial license as [dev]).
+- Do not describe FLUX.1 [dev] or Stable Diffusion 3.5 as "open source" — both are **Open Weight** with commercial restrictions (revenue thresholds).
+- **Qwen-Image**: Alibaba's 20B MMDiT model, notable for commercial-grade Chinese/English text rendering inside generated images (posters, UI mockups, menus). Apache-2.0 and fully open — note this is distinct from the newer Qwen-Image-3.0, which Alibaba has kept closed (no weights released).
+- **Stable Diffusion 3.5**: also ships Medium (2.5B) and Large Turbo (distilled, faster) variants under the same Stability AI Community License — free for non-commercial use and for commercial users under $1M annual revenue; enterprise use above that threshold requires contacting Stability AI.
+- **HunyuanImage 3.0**: Tencent's native multimodal (unified autoregressive, not diffusion) image generator — the largest openly released text-to-image model by parameter count as of its release. License is free for commercial use up to 100M monthly active users, with attribution required.
+- **SDXL 1.0**: still the most widely fine-tuned/LoRA'd open image model due to its age and ecosystem size; CreativeML OpenRAIL++-M is a responsible-AI license (commercial use allowed with use-based restrictions), not a plain permissive license like Apache/MIT.
 
 ---
 
@@ -208,11 +217,19 @@ Subcategory tree: General · Human/Portrait · Clothing · Animal · Product · 
 | Model | Params | Task | Hardware | License | Best For |
 |---|---:|---|---|---|---|
 | [Whisper large-v3](https://huggingface.co/openai/whisper-large-v3) | 1.55B | Speech-to-Text | CPU / GPU / Apple Silicon (MLX, whisper.cpp) | Apache-2.0 | Multilingual transcription, translation |
+| [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) | 82M | Text-to-Speech | CPU (<2 GB) | Apache-2.0 | Lightweight, fast, real-time TTS (54 voices, 8 languages) |
+| [F5-TTS](https://huggingface.co/SWivid/F5-TTS) | ~330M (DiT) | Text-to-Speech / Voice Cloning | ~4 GB VRAM | CC-BY-NC-4.0 (Research Only; commercial fine-tunes exist separately, e.g. Apache-2.0 OpenF5-TTS-Base) | Zero-shot voice cloning from a few seconds of reference audio |
+| [MusicGen](https://huggingface.co/facebook/musicgen-large) | 300M–3.3B | Music Generation | ~8–16 GB VRAM (size-dependent) | Code: MIT / Weights: CC-BY-NC-4.0 (Research Only) | Text-to-music and melody-conditioned generation |
+| [Qwen2.5-Omni-7B](https://huggingface.co/Qwen/Qwen2.5-Omni-7B) | 7B | Audio Understanding (+ text/image/video, real-time speech output) | ~16 GB (Q4) / ~20 GB (fp16) | Apache-2.0 | End-to-end audio/multimodal understanding + real-time speech generation |
+| [pyannote speaker-diarization-3.1](https://huggingface.co/pyannote/speaker-diarization-3.1) | N/A (segmentation + embedding pipeline) | Speaker Recognition / Diarization | CPU/GPU | MIT | Who-spoke-when diarization for meeting/call transcripts |
 
-- Trained on 1M hours of weakly labeled audio + 4M hours of pseudo-labeled audio, using 128 Mel-frequency bins (vs. 80 in large-v2) — a 10–20% error reduction over large-v2 across languages.
-- Smaller distilled/quantized variants (tiny, base, small, medium) trade accuracy for speed and run well on CPU.
+- Trained on 1M hours of weakly labeled audio + 4M hours of pseudo-labeled audio, using 128 Mel-frequency bins (vs. 80 in large-v2) — a 10–20% error reduction over large-v2 across languages (Whisper large-v3). Smaller distilled/quantized Whisper variants (tiny, base, small, medium) trade accuracy for speed and run well on CPU.
+- **Kokoro-82M**: despite its small size, reached #1 on the TTS Spaces Arena leaderboard at launch; runs in real-time or faster on budget CPU hardware, fully Apache-2.0.
+- **F5-TTS**: flow-matching + diffusion-transformer voice cloning model; the original SWivid/F5-TTS weights are **CC-BY-NC-4.0** (non-commercial) — don't assume commercial use is fine without a separate license or an explicitly Apache-2.0 community fine-tune.
+- **MusicGen**: Meta's text/melody-to-music model; code is MIT but the released **weights are CC-BY-NC-4.0**, restricting the official checkpoints to non-commercial research use.
+- **Qwen2.5-Omni-7B**: a genuinely end-to-end omni-modal model (text+image+audio+video in, text+speech out), not audio-only — ranked #1 open-source on the MMAU audio understanding/reasoning leaderboard at release.
+- **pyannote speaker-diarization-3.1**: the standard open pipeline for "who spoke when," MIT-licensed; the newer `speaker-diarization-community-1` pipeline is CC-BY-4.0 instead. Requires accepting gated-access terms on Hugging Face before download.
 - Runs efficiently via `whisper.cpp` on CPU/Apple Silicon, or `faster-whisper`/CTranslate2 on GPU.
-- Text-to-Speech, Voice Cloning, and Music Generation entries are welcome — see [Contributing](#contributing).
 
 ---
 
@@ -224,10 +241,20 @@ Text embedding and reranking models for semantic search and RAG.
 |---|---:|---:|---:|---|---|
 | [Qwen3-Embedding-0.6B](https://huggingface.co/Qwen/Qwen3-Embedding-0.6B) | 0.6B | 32K | ~2 GB | Apache-2.0 | Multilingual text embeddings, instruction-aware retrieval |
 | [BGE-M3](https://huggingface.co/BAAI/bge-m3) | ~568M | 8K | ~2 GB | MIT | Multi-functionality retrieval (dense + sparse + multi-vector), multilingual RAG |
+| [gte-Qwen2-7B-instruct](https://huggingface.co/Alibaba-NLP/gte-Qwen2-7B-instruct) | 7B | 32K | ~16 GB (fp16) / ~6 GB (Q4) | Apache-2.0 | Highest-quality open embeddings (top MTEB ranking), multilingual |
+| [nomic-embed-text-v1.5](https://huggingface.co/nomic-ai/nomic-embed-text-v1.5) | 137M | 8192 | ~1 GB | Apache-2.0 | Lightweight embeddings with Matryoshka dimension truncation (768→64) |
+| [mxbai-embed-large-v1](https://huggingface.co/mixedbread-ai/mxbai-embed-large-v1) | 335M | 512 | ~1.5 GB | Apache-2.0 | General-purpose semantic search / RAG on modest hardware |
+| [jina-embeddings-v3](https://huggingface.co/jinaai/jina-embeddings-v3) | 570M | 8192 | ~2 GB | CC-BY-NC-4.0 (Research Only; commercial via Jina API/AWS/Azure) | Task-specific LoRA adapters (retrieval, clustering, classification) |
+| [bge-reranker-v2-m3](https://huggingface.co/BAAI/bge-reranker-v2-m3) | 568M | 512 (per pair) | ~2 GB | Apache-2.0 | Reranking retrieved candidates, multilingual (EN/ZH strong, broad language support) |
+| [jina-reranker-v2-base-multilingual](https://huggingface.co/jinaai/jina-reranker-v2-base-multilingual) | N/A | 1024 (per pair) | ~2 GB | CC-BY-NC-4.0 (Research Only; commercial via Jina API/AWS/Azure) | Multilingual cross-encoder reranking for RAG pipelines |
 
 - **Qwen3-Embedding** family also ships 4B and 8B variants for higher retrieval quality at greater compute cost; all Apache-2.0.
 - **BGE-M3** ("M3" = Multi-Linguality, Multi-Functionality, Multi-Granularity) supports 100+ languages and can produce dense, sparse (lexical), and ColBERT-style multi-vector embeddings from one model.
-- Both are CPU-runnable at small batch sizes and fit comfortably on any consumer GPU.
+- **gte-Qwen2-7B-instruct**: built on the Apache-2.0 Qwen2-7B base by Alibaba-NLP; one of the strongest open embedding models on the MTEB leaderboard, at the cost of needing a 7B-class model just for embeddings.
+- **nomic-embed-text-v1.5** and **mxbai-embed-large-v1**: both small, Apache-2.0, and CPU-friendly — the practical defaults when you want a fully permissive license without the compute cost of a 7B embedder. Nomic's Matryoshka training lets you truncate embeddings down to 64 dims for storage/speed trade-offs.
+- **jina-embeddings-v3** and **jina-reranker-v2-base-multilingual**: both **CC-BY-NC-4.0** (non-commercial) when self-hosted from the Hugging Face weights — Jina AI's commercial terms require going through their paid API/cloud marketplace offerings instead. Don't assume these are commercially self-hostable for free.
+- **bge-reranker-v2-m3**: pairs naturally with BGE-M3 or any embedding model above as a second-stage reranker; Apache-2.0 and lightweight enough to run alongside an embedding model on the same GPU.
+- Most models here are CPU-runnable at small batch sizes and fit comfortably on any consumer GPU; the 7B-class embedder (gte-Qwen2-7B-instruct) is the exception.
 
 ---
 
@@ -239,10 +266,22 @@ Small language models built for CPU, mobile, and resource-constrained deployment
 |---|---:|---:|---:|---|---|
 | [Phi-4-mini-instruct](https://huggingface.co/microsoft/Phi-4-mini-instruct) | 3.8B | 128K | ~4 GB (Q4) / ~8 GB (fp16) | MIT | Small language model, CPU-friendly, reasoning-dense tasks |
 | [Gemma 3 4B](https://huggingface.co/google/gemma-3-4b-it) | 4B | 128K | ~4 GB (Q4) / ~8 GB (fp16) | Gemma Terms of Use (commercial allowed) | Small multimodal model (text + image), on-device |
+| [Gemma 3 270M](https://huggingface.co/google/gemma-3-270m-it) | 270M | 32K | <1 GB (Q4) / ~1 GB (fp16) | Gemma Terms of Use (commercial allowed) | Ultra-lightweight text-only model, hyper-efficient edge/mobile deployment |
+| [SmolLM2-1.7B](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B) | 1.7B (also 135M, 360M) | 8192 | ~1.5 GB (Q4) / ~4 GB (fp16) | Apache-2.0 | On-device general tasks, smallest sizes for CPU/browser (WebGPU) |
+| [Qwen3-0.6B](https://huggingface.co/Qwen/Qwen3-0.6B) | 0.6B | 32K | ~1 GB (Q4) / ~2 GB (fp16) | Apache-2.0 | Smallest Qwen3 with thinking/non-thinking mode toggle, 100+ languages |
+| [Llama 3.2 1B](https://huggingface.co/meta-llama/Llama-3.2-1B) | 1.23B | 128K (8K on quantized builds) | ~1 GB (Q4) / ~3 GB (fp16) | Llama 3.2 Community License (commercial allowed) | Meta's edge/mobile-optimized dense model |
+| [TinyLlama-1.1B](https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0) | 1.1B | 2048 | ~1 GB (Q4) / ~3 GB (fp16) | Apache-2.0 | Simplest fully-permissive baseline for Raspberry Pi / very constrained CPU |
+| [MobileLLM-R1](https://huggingface.co/collections/facebook/mobilellm-r1-68c4597b104fac45f28f448e) | 140M–950M | 4K base / 32K post-trained | <1 GB (Q4) | FAIR NC (**non-commercial only**) | Best sub-1B reasoning benchmarks; research/personal use only |
 
 - **Phi-4-mini**: text-only, trained on synthetic + filtered web data with a focus on reasoning density; MIT license is fully commercially usable without restriction.
 - **Gemma 3 4B**: part of the Gemma 3 family (1B/4B/12B/27B); the 1B variant is text-only with a 32K context window, while 4B/12B/27B add image input and 128K context.
-- Both run comfortably on Apple Silicon (MLX/GGUF conversions) and modern CPUs at Q4 quantization.
+- **Gemma 3 270M**: the smallest Gemma 3 size, text-only, designed specifically for hyper-efficient edge deployment; still carries a 256K-token vocabulary for strong multilingual/rare-token handling despite its size.
+- **SmolLM2**: Hugging Face's fully open small-model family (135M/360M/1.7B), Apache-2.0, commonly used for on-device and in-browser (WebGPU/transformers.js) demos.
+- **Qwen3-0.6B**: shares the same thinking/non-thinking toggle and 100+ language support as larger Qwen3 models, just at edge scale; pairs naturally with Qwen3-Embedding-0.6B (see [Retrieval](#7-retrieval)) for a fully local, same-family RAG stack.
+- **Llama 3.2 1B**: Meta's smallest Llama 3.2 size, purpose-built for edge/mobile; note the Llama Community License is custom (not Apache/MIT) though it does permit commercial use for most organizations.
+- **TinyLlama-1.1B**: the oldest model in this table (pretrained on ~1T tokens of SlimPajama + StarCoderData) but still relevant as the simplest, most permissively licensed baseline for extremely constrained devices like Raspberry Pi — its native 2048-token context is far shorter than the newer models here.
+- **MobileLLM-R1**: Meta's sub-1B reasoning-focused family, claimed 2–5x performance over other fully open sub-1B models on reasoning benchmarks — but licensed under **FAIR NC**, a non-commercial research license, unlike every other model in this table. Do not deploy it in a commercial product without a separate agreement from Meta.
+- Everything above except MobileLLM-R1 and Gemma 3 270M's larger siblings runs comfortably on Apple Silicon (MLX/GGUF conversions), modern CPUs at Q4 quantization, and several (SmolLM2, Qwen3-0.6B) are small enough for in-browser WebGPU inference.
 
 ---
 
