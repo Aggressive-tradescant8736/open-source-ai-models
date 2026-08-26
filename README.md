@@ -36,7 +36,7 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 
 ## Featured
 
-**🏆 Best Overall** — [DeepSeek-V3.1](#1-general-ai): 671B/37B-active MoE, hybrid think/non-think mode, 128K context, commercially usable license.
+**🏆 Best Overall** — [DeepSeek-V3.1](#1-general-ai): 671B/37B-active MoE, hybrid think/non-think mode, 128K context, commercially usable license. [Mistral Large 3](#1-general-ai) (Apache-2.0, 256K context) is the pick if you need a fully permissive license at similar scale.
 
 **💻 Best Coding Models** — [Qwen3-Coder-480B-A35B-Instruct](#2-coding) for server-scale agentic coding; [Qwen3-Coder-30B-A3B-Instruct](#2-coding) for local/single-GPU use.
 
@@ -66,8 +66,8 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 |---|---|
 | 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet, PaddleOCR-VL, OvisOCR2, GLM-OCR |
 | 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s |
-| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Gemma 3 27B (Q4), FLUX.1 [dev] (quantized) |
-| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct *(multi-GPU or aggressive quantization at this tier)* |
+| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), ERNIE-4.5-21B-A3B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Gemma 3 27B (Q4), FLUX.1 [dev] (quantized) |
+| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Mistral Large 3, Kimi K2 Instruct, Command A+, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct *(multi-GPU or aggressive quantization at this tier)* |
 | 🍎 Apple Silicon | Whisper large-v3 (MLX/whisper.cpp), Qwen3-32B (MLX/GGUF), Phi-4-mini-instruct (MLX/GGUF) |
 
 VRAM figures are approximate, quantization-dependent estimates for guidance only — verify against each model's official card before provisioning hardware.
@@ -85,10 +85,20 @@ General-purpose LLMs, reasoning, and instruction-following models.
 | [Llama 4 Scout](https://www.llama.com/docs/model-cards-and-prompt-formats/llama4/) | 109B total / 17B active (MoE) | 10M tokens | ~66 GB (int4, active experts) / multi-GPU for full weights | Llama 4 Community License (commercial allowed under 700M MAU) | General LLM, long-context, multimodal (text+image in) |
 | [Qwen3-32B](https://huggingface.co/Qwen/Qwen3-32B) | 32B (dense) | 32K native / 131K (YaRN) | ~24 GB (Q4) / ~64 GB (fp16) | Apache-2.0 | General LLM, instruction following, reasoning toggle |
 | [DeepSeek-V3.1](https://huggingface.co/deepseek-ai/DeepSeek-V3.1) | 671B total / 37B active (MoE) | 128K | Multi-GPU (>400 GB fp8) | DeepSeek Model License (commercial use allowed) | Reasoning, general LLM, hybrid think/non-think mode |
+| [Mistral Large 3](https://docs.mistral.ai/models/model-cards/mistral-large-3-25-12) | 675B total / 41B active (MoE) | 256K | Multi-GPU (>400 GB fp8) | Apache-2.0 | Flagship open-weight general LLM, long-context |
+| [Kimi K2 Instruct](https://huggingface.co/moonshotai/Kimi-K2-Instruct) | 1T total / 32B active (MoE) | 128K | Multi-GPU (native INT4, still >500 GB) | Modified MIT (attribution required above 100M MAU / $20M mo. revenue) | Drop-in general-purpose chat + agentic use, no long "thinking" |
+| [Command A+](https://docs.cohere.com/docs/command-a-plus) | 218B total / 25B active (MoE) | 128K input / 64K output | 2× H100 (fp8) / 1× B200 | Apache-2.0 | Enterprise agentic + RAG with native citation grounding, 48 languages |
+| [ERNIE-4.5-21B-A3B](https://huggingface.co/baidu/ERNIE-4.5-21B-A3B-PT) | 21B total / 3B active (MoE) | 128K | ~16 GB (Q4) | Apache-2.0 | Efficient general LLM on a single mid-range GPU |
+| [OLMo 2 32B](https://allenai.org/olmo/release-notes) | 32B (dense) | 4K native / 8K (RoPE-scaled) | ~20 GB (Q4) / ~64 GB (fp16) | Apache-2.0 (weights) / ODC-BY (Dolma 2 data) | Fully open reproducible research (weights + training data + code + checkpoints) |
 
 - **Llama 4 Scout**: MoE with 16 experts; the 10M-token context is Meta's advertised maximum and needs specialized long-context serving. Larger sibling Llama 4 Maverick (400B total / 17B active, 1M context) exists for higher-quality workloads.
 - **Qwen3-32B**: part of the Qwen3 dense family (0.6B–32B); larger MoE variants (30B-A3B, 235B-A22B) trade dense simplicity for throughput at similar active-parameter cost.
 - **DeepSeek-V3.1**: code released under MIT; model weights follow DeepSeek's own model license. 128K is the documented baseline context; some providers expose up to 163,840 tokens.
+- **Mistral Large 3**: Mistral's flagship, trained from scratch (3,000 H200 GPUs); both base and instruct checkpoints are Apache-2.0 — a fully permissive license at this scale is still rare among 600B+ models.
+- **Kimi K2 Instruct**: the non-thinking, "reflex-grade" counterpart to Kimi K2 Thinking (see [Reasoning](#reasoning) below) — same 1T/32B-active architecture, tuned for fast drop-in chat/agentic use rather than long chain-of-thought.
+- **Command A+**: unifies Cohere's prior Command A, Command A Reasoning, Command A Vision, and Command A Translate models into one checkpoint; notable for native multimodal input and built-in citation/grounding spans. Cohere's earlier Command A/R/R+ models were CC-BY-NC (non-commercial) — Command A+ is Cohere's first entry in this family under a fully permissive Apache-2.0 license.
+- **ERNIE-4.5-21B-A3B**: part of Baidu's ERNIE 4.5 family (0.3B–424B, all Apache-2.0); this size is the practical sweet spot for running a modern MoE general LLM on a single consumer GPU.
+- **OLMo 2 32B**: Allen Institute for AI's fully open release — unlike the other entries here, it publishes not just weights but the full Dolma 2 pretraining dataset, training code, every intermediate checkpoint, and post-training recipes, at the cost of a much shorter native context window (4K, RoPE-extendable to 8K) than the other models in this table.
 
 ### Reasoning
 
