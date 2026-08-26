@@ -92,9 +92,17 @@ Dedicated reasoning / "thinking" models — trained or tuned for long chain-of-t
 | [DeepSeek-R1](https://huggingface.co/deepseek-ai/DeepSeek-R1) | 671B total / 37B active (MoE) | 128K | Multi-GPU (>400 GB fp8) | MIT | Frontier open reasoning, distillation source for smaller models |
 | [Qwen3-235B-A22B-Thinking-2507](https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507) | 235B total / 22B active (MoE) | 262K native | Multi-GPU (>120 GB, quantized) | Apache-2.0 | Scaled thinking mode, math/science/coding benchmarks |
 | [QwQ-32B](https://huggingface.co/Qwen/QwQ-32B) | 32.5B (dense) | 131K | ~24 GB (Q4) / ~64 GB (fp16) | Apache-2.0 | Reasoning on a single high-end GPU, local/private use |
+| [gpt-oss-120b](https://huggingface.co/openai/gpt-oss-120b) | 117B total / 5.1B active (MoE) | 128K | ~80 GB (native MXFP4) / single 80 GB GPU | Apache-2.0 | OpenAI's first open-weight reasoning model, strong tool use |
+| [Kimi K2 Thinking](https://huggingface.co/moonshotai/Kimi-K2-Thinking) | 1T total / 32B active (MoE) | 256K (262,144) | Multi-GPU (native INT4, still >500 GB) | Modified MIT (must display "Kimi K2" if >100M MAU or >$20M/mo revenue) | Long-horizon agentic reasoning, hundreds of sequential tool calls |
+| [GLM-4.6](https://huggingface.co/zai-org/GLM-4.6) | 355B total (MoE) | 200K input / 128K output | Multi-GPU (>200 GB, quantized) | MIT | Frontier open reasoning + coding + agentic tasks |
+| [Magistral Small](https://huggingface.co/mistralai/Magistral-Small-2509) | 24B (dense) | 128K (reliable to ~40K) | ~16 GB (Q4) / ~48 GB (fp16) | Apache-2.0 | Reasoning on a single mid-range GPU, built on Mistral Small 3.2 |
 
 - **DeepSeek-R1**: MIT license explicitly permits distillation and commercialization — the most widely used teacher model for smaller open reasoning models.
 - **Qwen3-235B-A22B-Thinking-2507**: the dedicated "thinking" checkpoint of Qwen3-235B-A22B (separate from the default instruct checkpoint). Qwen recommends context well above 131K for long chain-of-thought tasks.
+- **gpt-oss-120b**: OpenAI's first open-weight release since GPT-2; uses alternating dense/locally-banded-sparse attention and ships natively in MXFP4, making the 117B-total model fit on a single 80 GB GPU. A smaller sibling, gpt-oss-20b (21B total / 3.6B active), targets ~16 GB VRAM.
+- **Kimi K2 Thinking**: interleaves step-by-step reasoning with tool calls across hundreds of turns without drift; ships as native INT4 to keep the 1T-parameter model's memory footprint down. The "Modified MIT" license is permissive but requires visible attribution at very large scale (100M+ MAU or $20M+/month revenue).
+- **GLM-4.6**: Zhipu/Z.ai's frontier MoE, expanded from GLM-4.5's 128K to a 200K input context, with explicit improvements to coding, reasoning, long-context, and agentic tool use.
+- **Magistral Small**: the only dense, single-GPU-friendly model in this list's upper tier; built on Mistral Small 3.2 with SFT from Magistral Medium reasoning traces plus RL. Its larger sibling, Magistral Medium (~45B), is API-only (not open-weight).
 - **QwQ-32B**: dense, built on Qwen2.5 architecture — the best option here for reasoning on a single consumer/prosumer GPU rather than a multi-GPU server. Supersedes an earlier Nov-2024 "Preview" (32K context).
 
 ---
