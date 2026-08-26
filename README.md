@@ -39,7 +39,7 @@ Categories without a table yet (Computer Vision, Document AI, Video, Language, A
 
 **👁️ Best Vision-Language Models** — [Gemma 3 27B](#3-multimodal): multilingual text+image input, 128K context, permissive commercial license.
 
-**✂️ Best Background Removal Models** — [BiRefNet](#5-image-matting--background-removal): MIT, high-resolution matting, standard backbone behind most open background-removal tooling.
+**✂️ Best Background Removal Models** — [BiRefNet](#5-image-matting--background-removal) (MIT, highest quality/resolution) for general use; [U2-Net](#5-image-matting--background-removal) family (Apache-2.0) for subject-specific variants (Human, Cloth, Anime via IS-Net); [Silueta](#5-image-matting--background-removal) (~43 MB) when file size matters more than accuracy.
 
 **🎨 Best Image Generation Models** — [FLUX.1 \[schnell\]](#4-image-generation) for commercial use (Apache-2.0); [FLUX.1 \[dev\]](#4-image-generation) for max quality, non-commercial only.
 
@@ -153,14 +153,21 @@ Vision-language and other cross-modal models.
 
 Subcategory tree: General · Human/Portrait · Clothing · Animal · Product · Anime/Illustration. Do not assume every segmentation model is a background-removal model — classify by actual intended use.
 
-| Model | Size | Task | Hardware | License | Best For |
+| Model | Size | Task | Hardware | License | Specialization |
 |---|---:|---|---|---|---|
-| [BiRefNet](https://github.com/ZhengPeng7/BiRefNet) | ~880 MB (weights) | Dichotomous Image Segmentation / Matting | CPU/GPU | MIT | High-resolution background removal, General |
+| [BiRefNet](https://github.com/ZhengPeng7/BiRefNet) | ~880 MB (weights) | Dichotomous Image Segmentation / Matting | CPU/GPU | MIT | General |
+| [U2-Net](https://github.com/xuebinqin/U-2-Net) | ~176 MB | Salient Object Detection / Matting | CPU/GPU | Apache-2.0 | General |
+| [Silueta](https://github.com/danielgatis/rembg) | ~43 MB | Salient Object Detection / Matting | CPU | Unknown (distilled U2-Net variant; `rembg` wrapper itself is MIT) | General, lightweight |
+| [U2-Net (Human Segmentation)](https://github.com/xuebinqin/U-2-Net) | ~168 MB | Portrait / Body Segmentation | CPU/GPU | Apache-2.0 | Human / Portrait |
+| [U2-Net (Cloth Segmentation)](https://github.com/levindabhi/cloth-segmentation) | ~168 MB | Clothes Parsing (upper/lower/full body) | CPU/GPU | Apache-2.0 (architecture; verify weight release terms in repo) | Clothing |
+| [IS-Net (Anime)](https://github.com/xuebinqin/DIS) | ~168 MB | Dichotomous Image Segmentation | CPU/GPU | Apache-2.0 | Anime / Illustration |
 
-- **BiRefNet** ("Bilateral Reference Network") targets high-resolution dichotomous image segmentation and is widely used as the backbone for general-purpose background removal tools (e.g. via `rembg` and `transformers.js`).
-- Released by ZhengPeng7 (CAAI AIR '24 paper) under MIT — free for commercial use.
-- Community wrapper projects built on top of BiRefNet may carry their own separate licenses independent of the model weights; verify the wrapper's license separately if redistributing it.
-- U2-Net, U2-Net Human/Cloth, and IS-Net variants are on the roadmap — contributions verifying their current license/specs are welcome.
+- **BiRefNet** ("Bilateral Reference Network") targets high-resolution dichotomous image segmentation and is widely used as the backbone for general-purpose background removal tools (e.g. via `rembg` and `transformers.js`). Released by ZhengPeng7 (CAAI AIR '24 paper) under MIT.
+- **U2-Net**: the original nested U-structure salient object detection model (Qin et al., Pattern Recognition 2020), Apache-2.0. Its Human and Cloth segmentation variants above share the same architecture but are fine-tuned for those specific subjects — the Cloth variant in most background-removal apps traces back to Levin Dabhi's community-trained checkpoint rather than the original authors' repo, so double-check that repo's license terms before commercial redistribution.
+- **Silueta**: a reduced-size (~43 MB, vs. U2-Net's ~176 MB) general-purpose variant shipped as one of `rembg`'s bundled models; the specific weight license isn't separately documented, so treat it as **Unknown** even though `rembg`'s own code is MIT.
+- **IS-Net**: from Xuebin Qin et al.'s "Highly Accurate Dichotomous Image Segmentation" (ECCV 2022, `xuebinqin/DIS`), Apache-2.0; commonly repackaged with anime-tuned weights for illustration/anime subjects.
+- Model sizes for the Human/Cloth/Anime variants above reflect the file sizes as packaged in common desktop background-removal apps (e.g. Unbagrnd) — official repos may list slightly different sizes depending on export format.
+- Community wrapper projects built on top of any of these models may carry their own separate licenses independent of the model weights; verify the wrapper's license separately if redistributing it.
 
 ---
 
