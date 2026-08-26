@@ -20,12 +20,13 @@ This is a **directory**, not an *Awesome List*: every entry lists params, VRAM, 
 - [6. Audio & Speech](#6-audio--speech)
 - [7. Retrieval](#7-retrieval)
 - [8. Lightweight & Edge AI](#8-lightweight--edge-ai)
+- [9. Document AI (OCR)](#9-document-ai-ocr)
 - [How to Choose a Model](#how-to-choose-a-model)
 - [Model Selection Criteria](#model-selection-criteria)
 - [Contributing](#contributing)
 - [License](#license)
 
-Categories without a table yet (Computer Vision, Document AI, Video, Language, Agents) are defined but don't have a verified entry — see [Contributing](#contributing) if you'd like to add the first one.
+Categories without a table yet (Computer Vision, Video, Language, Agents) are defined but don't have a verified entry — see [Contributing](#contributing) if you'd like to add the first one.
 
 ---
 
@@ -45,6 +46,8 @@ Categories without a table yet (Computer Vision, Document AI, Video, Language, A
 
 **🎙️ Best Speech-to-Text Models** — [Whisper large-v3](#6-audio--speech): Apache-2.0, multilingual, runs on CPU via `whisper.cpp`.
 
+**📄 Best OCR Models** — [PaddleOCR-VL](#9-document-ai-ocr) (0.9B, Apache-2.0) and [OvisOCR2](#9-document-ai-ocr) (0.8B, Apache-2.0) for SOTA document parsing at sub-1B size; [GLM-OCR](#9-document-ai-ocr) (0.9B, MIT) for the easiest local/Ollama deployment.
+
 **🔍 Best Retrieval / Embedding Models** — [Qwen3-Embedding-0.6B](#7-retrieval) for multilingual instruction-aware retrieval; [BGE-M3](#7-retrieval) for dense+sparse+multi-vector RAG.
 
 **🪶 Best Small Models** — [Phi-4-mini-instruct](#8-lightweight--edge-ai) (3.8B, MIT) for text-only edge; [Gemma 3 4B](#8-lightweight--edge-ai) for on-device multimodal.
@@ -57,8 +60,8 @@ Categories without a table yet (Computer Vision, Document AI, Video, Language, A
 
 | Tier | Recommended models |
 |---|---|
-| 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet |
-| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B |
+| 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet, PaddleOCR-VL, OvisOCR2, GLM-OCR |
+| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s |
 | 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Gemma 3 27B (Q4), FLUX.1 [dev] (quantized) |
 | 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct *(multi-GPU or aggressive quantization at this tier)* |
 | 🍎 Apple Silicon | Whisper large-v3 (MLX/whisper.cpp), Qwen3-32B (MLX/GGUF), Phi-4-mini-instruct (MLX/GGUF) |
@@ -211,6 +214,27 @@ Small language models built for CPU, mobile, and resource-constrained deployment
 - **Phi-4-mini**: text-only, trained on synthetic + filtered web data with a focus on reasoning density; MIT license is fully commercially usable without restriction.
 - **Gemma 3 4B**: part of the Gemma 3 family (1B/4B/12B/27B); the 1B variant is text-only with a 32K context window, while 4B/12B/27B add image input and 128K context.
 - Both run comfortably on Apple Silicon (MLX/GGUF conversions) and modern CPUs at Q4 quantization.
+
+---
+
+## 9. Document AI (OCR)
+
+Small, locally-runnable vision-language models tuned for OCR, document parsing, and structured layout extraction (text/tables/formulas → Markdown or HTML).
+
+| Model | Params | Context | VRAM | License | Best For |
+|---|---:|---:|---:|---|---|
+| [PaddleOCR-VL](https://huggingface.co/PaddlePaddle/PaddleOCR-VL) | 0.9B | N/A (page-level, not a general chat context window) | ~4 GB | Apache-2.0 | Lightweight, multi-language (100+ scripts) layout + text extraction |
+| [OvisOCR2](https://huggingface.co/ATH-MaaS/OvisOCR2) | 0.8B | N/A (page-level) | ~4 GB | Apache-2.0 | SOTA document parsing (OmniDocBench v1.6 leader), LaTeX formula recognition |
+| [GLM-OCR](https://huggingface.co/zai-org/GLM-OCR) | 0.9B | N/A (page-level) | ~4 GB | MIT (pipeline's PP-DocLayoutV3 component is Apache-2.0) | Easiest local deployment (Ollama, vLLM, SGLang), edge devices |
+| [Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct) | 4.1B | 32K native (YaRN-extendable) | ~8 GB (Q4) / ~10 GB (fp16) | Apache-2.0 | General-purpose offline image-to-text and document structure extraction |
+| [Nanonets-OCR-s](https://huggingface.co/nanonets/Nanonets-OCR-s) | 4B | 32K (inherited from base) | ~8 GB (Q4) / ~10 GB (fp16) | Unknown — fine-tune of Apache-2.0 Qwen2.5-VL-3B-Instruct, but Nanonets has not published an explicit license for the fine-tuned weights ([see HF discussion](https://huggingface.co/nanonets/Nanonets-OCR-s/discussions/2)) | Scanned documents, handwriting, and tables → clean Markdown |
+
+- **PaddleOCR-VL** and **OvisOCR2** are both sub-1B, purpose-built document parsers (not general chat models) — PaddleOCR-VL pairs a NaViT-style dynamic-resolution encoder with the 0.3B ERNIE-4.5 language model; OvisOCR2 is a post-trained Qwen3.5-0.8B. Both top OmniDocBench v1.6 among sub-1B models as of their release.
+- **GLM-OCR**: Z.ai's 0.9B model, MIT-licensed, explicitly designed for consumer-laptop/edge deployment; its full pipeline optionally uses PP-DocLayoutV3 (Apache-2.0) for layout analysis.
+- **Qwen2.5-VL-3B-Instruct**: a general vision-language model (not OCR-specialized) that's widely used for offline document/image-to-text via Ollama or LM Studio; Apache-2.0, unlike some larger Qwen2.5-VL sizes.
+- **Nanonets-OCR-s**: fine-tuned from Qwen2.5-VL-3B-Instruct specifically for markdown conversion of scanned docs/handwriting/tables. Its base model is Apache-2.0, but Nanonets itself has not clearly republished a license for the fine-tune — treat commercial use as **unverified** until Nanonets clarifies (see the linked HF discussion) rather than assuming it inherits Apache-2.0.
+- Context length is listed as `N/A` for the three dedicated OCR parsers above because they operate on single-page images with a fixed output budget rather than exposing a general long-context chat window; check each repo for exact page-resolution and output-token limits.
+- **PaddleOCR** (the classical, non-VLM pipeline: PP-OCRv6) is a separate, much smaller (1.5M–34.5M param) detection+recognition stack from the same team, also Apache-2.0 — worth considering over the VLM-based models above when you need maximum speed on CPU/edge rather than markdown-quality structure extraction.
 
 ---
 
