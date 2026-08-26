@@ -42,11 +42,13 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 
 **🧠 Best Reasoning Models** — [DeepSeek-R1](#1-general-ai) (MIT, frontier, distillation source), [Qwen3-235B-A22B-Thinking-2507](#1-general-ai) (262K context), [QwQ-32B](#1-general-ai) (single-GPU, ~24 GB Q4).
 
-**👁️ Best Vision-Language Models** — [Gemma 3 27B](#3-multimodal): multilingual text+image input, 128K context, permissive commercial license.
+**👁️ Best Vision-Language Models** — [Gemma 3 27B](#3-multimodal) or [Pixtral-12B-2409](#3-multimodal) (both permissive, commercial-friendly); [InternVL3-78B](#3-multimodal) for SOTA open perception/reasoning; [Molmo-72B](#3-multimodal) for full data+code+weights openness; [Phi-4-multimodal-instruct](#3-multimodal) (MIT) for small tri-modal (text+image+audio) on modest hardware.
 
 **✂️ Best Background Removal Models** — [BiRefNet](#5-image-matting--background-removal) (MIT, highest quality/resolution) for general use; [U2-Net](#5-image-matting--background-removal) family (Apache-2.0) for subject-specific variants (Human, Cloth, Anime via IS-Net); [Silueta](#5-image-matting--background-removal) (~43 MB) when file size matters more than accuracy.
 
 **🎨 Best Image Generation Models** — [FLUX.1 \[schnell\]](#4-image-generation) or [Qwen-Image](#4-image-generation) for commercial use (both Apache-2.0); [FLUX.1 \[dev\]](#4-image-generation) / [Stable Diffusion 3.5 Large](#4-image-generation) for max quality, non-commercial or under-$1M-revenue only; [HunyuanImage 3.0](#4-image-generation) for largest open model (80B/13B active).
+
+**🔎 Best Upscaler Models** — [Real-ESRGAN](#super-resolution--upscaling) (BSD-3-Clause) for general photo/anime-video upscaling; [GFPGAN](#super-resolution--upscaling) (Apache-2.0) to pair with it for face restoration; [SwinIR](#super-resolution--upscaling) (Apache-2.0) for transformer-based SOTA restoration.
 
 **🎙️ Best Speech-to-Text Models** — [Whisper large-v3](#6-audio--speech): Apache-2.0, multilingual, runs on CPU via `whisper.cpp`.
 
@@ -66,10 +68,10 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 
 | Tier | Recommended models |
 |---|---|
-| 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet, PaddleOCR-VL, OvisOCR2, GLM-OCR, Kokoro-82M, nomic-embed-text-v1.5, mxbai-embed-large-v1, Gemma 3 270M, SmolLM2-1.7B, Qwen3-0.6B, TinyLlama-1.1B |
-| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s, Granite-4.1-8B, Seed-Coder-8B-Instruct, CodeGemma 7B, F5-TTS, Llama 3.2 1B |
-| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), ERNIE-4.5-21B-A3B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Devstral Small 2507 (Q4), Qwen2.5-Coder-32B-Instruct (Q4), StarCoder2-15B (Q4), Codestral 2 (Q4), Gemma 3 27B (Q4), gte-Qwen2-7B-instruct, FLUX.1 [dev] (quantized), Qwen-Image (quantized), SDXL 1.0, Stable Diffusion 3.5 Large (quantized) |
-| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Mistral Large 3, Kimi K2 Instruct, Command A+, MiniMax-M2, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct, HunyuanImage 3.0 *(multi-GPU or aggressive quantization at this tier)* |
+| 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet, PaddleOCR-VL, OvisOCR2, GLM-OCR, Kokoro-82M, nomic-embed-text-v1.5, mxbai-embed-large-v1, Gemma 3 270M, SmolLM2-1.7B, Qwen3-0.6B, TinyLlama-1.1B, Real-ESRGAN, GFPGAN, SwinIR |
+| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s, Granite-4.1-8B, Seed-Coder-8B-Instruct, CodeGemma 7B, F5-TTS, Llama 3.2 1B, Phi-4-multimodal-instruct |
+| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), ERNIE-4.5-21B-A3B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Devstral Small 2507 (Q4), Qwen2.5-Coder-32B-Instruct (Q4), StarCoder2-15B (Q4), Codestral 2 (Q4), Gemma 3 27B (Q4), Pixtral-12B-2409, gte-Qwen2-7B-instruct, FLUX.1 [dev] (quantized), Qwen-Image (quantized), SDXL 1.0, Stable Diffusion 3.5 Large (quantized) |
+| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Mistral Large 3, Kimi K2 Instruct, Command A+, MiniMax-M2, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct, HunyuanImage 3.0, Molmo-72B, InternVL3-78B, Qwen2.5-VL-72B-Instruct *(multi-GPU or aggressive quantization at this tier)* |
 | 🍎 Apple Silicon | Whisper large-v3 (MLX/whisper.cpp), Qwen3-32B (MLX/GGUF), Phi-4-mini-instruct (MLX/GGUF), SmolLM2-1.7B, Qwen3-0.6B |
 
 VRAM figures are approximate, quantization-dependent estimates for guidance only — verify against each model's official card before provisioning hardware.
@@ -163,10 +165,20 @@ Vision-language and other cross-modal models.
 | Model | Params | Context | VRAM | License | Best For |
 |---|---:|---:|---:|---|---|
 | [Gemma 3 27B](https://huggingface.co/google/gemma-3-27b-it) | 27B | 128K | ~24 GB (Q4) / ~54 GB (fp16) | Gemma Terms of Use (commercial allowed) | Vision-language, multilingual multimodal reasoning |
+| [Molmo-72B](https://huggingface.co/allenai/Molmo-72B-0924) | 72B | N/A (not separately documented) | Multi-GPU (>72 GB, quantized) | Apache-2.0 | Fully open VLM — weights + PixMo training data + code all released |
+| [InternVL3-78B](https://huggingface.co/OpenGVLab/InternVL3-78B) | 78B | 32K (usable to ~64K) | Multi-GPU (>78 GB, quantized) | Apache-2.0 | SOTA open-source perception + reasoning among open VLMs |
+| [Pixtral-12B-2409](https://huggingface.co/mistralai/Pixtral-12B-2409) | 12B + 400M vision encoder | 128K | ~24 GB (fp16) / ~12 GB (quantized) | Apache-2.0 | Natural image + document understanding, variable image resolution |
+| [Qwen2.5-VL-72B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-72B-Instruct) | 73.4B | 128K (32K native, YaRN-extended) | Multi-GPU (>73 GB, quantized) | Qwen License (commercial allowed; request required above 100M MAU) | Flagship vision-language, document/video/agent understanding |
+| [Phi-4-multimodal-instruct](https://huggingface.co/microsoft/Phi-4-multimodal-instruct) | 5.6B | 128K | ~6 GB (Q4) / ~12 GB (fp16) | MIT | Small tri-modal model (text + image + audio in, text out) |
 
 - Gemma 3's 4B, 12B, and 27B variants all accept text + image input with text output; the 1B variant is text-only (see [Lightweight & Edge AI](#8-lightweight--edge-ai)).
 - Google's Gemma license is a custom permissive license, not Apache/MIT — classify as **Commercial Allowed**, not plain "Open Source."
 - Llama 4 (see [General AI](#1-general-ai)) is also multimodal (text + image in, text out) and can be cross-referenced for larger-scale vision-language needs.
+- **Molmo-72B**: Allen Institute for AI's flagship VLM — notable because Ai2 released not just Apache-2.0 weights but the full PixMo training dataset, fine-tuning data, and code, unlike most other entries in this table. A smaller MolmoE-1B (MoE, 1B active/7B total) variant exists for on-device use.
+- **InternVL3-78B**: OpenGVLab's "Native Multimodal Pre-Training" model family (also available at 2B/8B/38B); state-of-the-art among open-weight VLMs on several perception/reasoning benchmarks at release, Apache-2.0.
+- **Pixtral-12B-2409**: Mistral's first vision-language model; ingests images at their natural resolution/aspect ratio rather than a fixed size, and doesn't trade off text-only benchmark performance to gain vision capability.
+- **Qwen2.5-VL-72B-Instruct**: unlike the smaller 3B/7B Qwen2.5-VL sizes (Apache-2.0, see [Document AI](#9-document-ai-ocr)), the 72B carries the custom **Qwen License** — commercial use is allowed, but products/services above 100M monthly active users must request a separate license from Alibaba. Don't assume Apache-2.0 terms carry over from the smaller sizes.
+- **Phi-4-multimodal-instruct**: the smallest and only genuinely tri-modal (text+image+audio in) model in this table; MIT-licensed and built on the Phi-4-mini backbone with added vision/speech encoders — a good fit when you need multimodal input on modest hardware rather than frontier-scale VLM quality.
 
 ---
 
@@ -187,6 +199,20 @@ Vision-language and other cross-modal models.
 - **Stable Diffusion 3.5**: also ships Medium (2.5B) and Large Turbo (distilled, faster) variants under the same Stability AI Community License — free for non-commercial use and for commercial users under $1M annual revenue; enterprise use above that threshold requires contacting Stability AI.
 - **HunyuanImage 3.0**: Tencent's native multimodal (unified autoregressive, not diffusion) image generator — the largest openly released text-to-image model by parameter count as of its release. License is free for commercial use up to 100M monthly active users, with attribution required.
 - **SDXL 1.0**: still the most widely fine-tuned/LoRA'd open image model due to its age and ecosystem size; CreativeML OpenRAIL++-M is a responsible-AI license (commercial use allowed with use-based restrictions), not a plain permissive license like Apache/MIT.
+
+### Super Resolution / Upscaling
+
+| Model | Size | Task | Hardware | License | Best For |
+|---|---:|---|---|---|---|
+| [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) | ~17–67 MB per variant | Image/Video Super Resolution (2x/4x) | CPU/GPU | BSD-3-Clause | General photo & anime-video upscaling, most widely deployed upscaler |
+| [GFPGAN](https://github.com/TencentARC/GFPGAN) | ~340 MB | Face Restoration + Upscaling | CPU/GPU | Apache-2.0 | Restoring/upscaling faces in old or low-quality photos |
+| [SwinIR](https://github.com/JingyunLiang/SwinIR) | ~12 MB (small) – ~120 MB (large) | Image Restoration / Super Resolution | CPU/GPU | Apache-2.0 | Transformer-based SOTA restoration (denoising, JPEG artifact removal, SR) |
+| [4x-NMKD-Siax-CX](https://openmodeldb.info/models/4x-NMKD-Siax-CX) | ~67 MB | Super Resolution (4x) | CPU/GPU | WTFPL | Clean/lightly-compressed image upscaling (community ESRGAN-arch model) |
+
+- **Real-ESRGAN**: Xintao Wang's official practical extension of ESRGAN; ships several purpose-built variants including `realesrgan-x4plus` (general photo), `realesrgan-x4plus-anime` (illustrations), and `realesr-animevideov3` (anime video, compact architecture) — the exact model names shown in most upscaler apps (Upscayl, chaiNNer, NMKD Video/Image tools). BSD-3-Clause, fully commercial-friendly.
+- **GFPGAN**: from the same Tencent ARC lab as Real-ESRGAN and commonly bundled alongside it (Real-ESRGAN upscales the whole image, GFPGAN specifically restores faces) — Apache-2.0, with some third-party components under their own licenses (see repo for details).
+- **SwinIR**: academic (CVPR workshop) Swin-Transformer-based restoration model; still a common baseline/comparison point for newer upscalers. Apache-2.0.
+- **4x-NMKD-Siax-CX**: one example of the many community-trained ESRGAN-architecture checkpoints on [OpenModelDB](https://openmodeldb.info/) (a community database, not a single organization) — this one is explicitly WTFPL. Many other popular community checkpoints bundled in upscaler apps (e.g. `4xLSDIR`, `4xLSDIRplusC`, `4xHFA2k`, `4xNomos8kSC`, `NMKD-Superscale`) are trained and released by independent contributors (e.g. Philip Hofmann/Phhofm) **without an explicit stated license** in their repos — treat those as **Unknown** and verify directly with the author before commercial redistribution, rather than assuming they're free to use like Real-ESRGAN/GFPGAN/SwinIR above.
 
 ---
 
