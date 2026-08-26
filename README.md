@@ -38,7 +38,7 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 
 **🏆 Best Overall** — [DeepSeek-V3.1](#1-general-ai): 671B/37B-active MoE, hybrid think/non-think mode, 128K context, commercially usable license. [Mistral Large 3](#1-general-ai) (Apache-2.0, 256K context) is the pick if you need a fully permissive license at similar scale.
 
-**💻 Best Coding Models** — [Qwen3-Coder-480B-A35B-Instruct](#2-coding) for server-scale agentic coding; [Qwen3-Coder-30B-A3B-Instruct](#2-coding) for local/single-GPU use.
+**💻 Best Coding Models** — [Qwen3-Coder-480B-A35B-Instruct](#2-coding) for server-scale agentic coding; [Qwen3-Coder-30B-A3B-Instruct](#2-coding) or [Devstral Small 2507](#2-coding) for local/single-GPU agentic use; [Codestral 2](#2-coding) for IDE autocomplete (256K context, Apache-2.0).
 
 **🧠 Best Reasoning Models** — [DeepSeek-R1](#1-general-ai) (MIT, frontier, distillation source), [Qwen3-235B-A22B-Thinking-2507](#1-general-ai) (262K context), [QwQ-32B](#1-general-ai) (single-GPU, ~24 GB Q4).
 
@@ -65,9 +65,9 @@ Categories without a table yet (Computer Vision, Video, Language, Agents) are de
 | Tier | Recommended models |
 |---|---|
 | 🟢 CPU | Whisper large-v3 (via whisper.cpp), BGE-M3, BiRefNet, PaddleOCR-VL, OvisOCR2, GLM-OCR |
-| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s |
-| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), ERNIE-4.5-21B-A3B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Gemma 3 27B (Q4), FLUX.1 [dev] (quantized) |
-| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Mistral Large 3, Kimi K2 Instruct, Command A+, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct *(multi-GPU or aggressive quantization at this tier)* |
+| 🟢 8 GB VRAM | Qwen3-Embedding-0.6B, Phi-4-mini-instruct, Gemma 3 4B, Qwen2.5-VL-3B-Instruct, Nanonets-OCR-s, Granite-4.1-8B, Seed-Coder-8B-Instruct, CodeGemma 7B |
+| 🟢 24 GB VRAM | Qwen3-32B (Q4), QwQ-32B (Q4), ERNIE-4.5-21B-A3B (Q4), Qwen3-Coder-30B-A3B-Instruct (Q4), Devstral Small 2507 (Q4), Qwen2.5-Coder-32B-Instruct (Q4), StarCoder2-15B (Q4), Codestral 2 (Q4), Gemma 3 27B (Q4), FLUX.1 [dev] (quantized) |
+| 🟢 48 GB+ VRAM | DeepSeek-V3.1, DeepSeek-R1, Mistral Large 3, Kimi K2 Instruct, Command A+, MiniMax-M2, Qwen3-235B-A22B-Thinking-2507, Llama 4 Scout, Qwen3-Coder-480B-A35B-Instruct *(multi-GPU or aggressive quantization at this tier)* |
 | 🍎 Apple Silicon | Whisper large-v3 (MLX/whisper.cpp), Qwen3-32B (MLX/GGUF), Phi-4-mini-instruct (MLX/GGUF) |
 
 VRAM figures are approximate, quantization-dependent estimates for guidance only — verify against each model's official card before provisioning hardware.
@@ -132,10 +132,25 @@ Code generation, completion, and coding-agent models.
 |---|---:|---:|---:|---|---|
 | [Qwen3-Coder-480B-A35B-Instruct](https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct) | 480B total / 35B active (MoE) | 256K native / 1M (YaRN) | Multi-GPU (>240 GB, quantized) | Apache-2.0 | Coding agents, repository-scale understanding |
 | [Qwen3-Coder-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-Coder-30B-A3B-Instruct) | 30B total / 3B active (MoE) | 256K native / 1M (YaRN) | ~24 GB (Q4) | Apache-2.0 | Local coding agent, single-GPU / high-end consumer setups |
+| [MiniMax-M2](https://huggingface.co/MiniMaxAI/MiniMax-M2) | 229.9B total / 9.8B active (MoE) | ~205K | Multi-GPU (>110 GB, quantized) | MIT-style (attribution required above 100M MAU / $30M ARR) | Long-horizon agentic coding, tool-first design |
+| [Devstral Small 2507](https://huggingface.co/mistralai/Devstral-Small-2507) | 24B (dense) | 128K | ~16 GB (Q4) / single RTX 4090 or 32 GB Mac | Apache-2.0 | Agentic software-engineering, SWE-bench-tuned local coding agent |
+| [Qwen2.5-Coder-32B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-32B-Instruct) | 32.5B (dense) | 32K native / 128K (YaRN) | ~24 GB (Q4) / ~64 GB (fp16) | Apache-2.0 | General code generation/completion, most widely adopted open coding dense model |
+| [Codestral 2](https://huggingface.co/mistralai/Codestral-22B-v0.2) | 22B (dense) | 256K | ~16 GB (Q4) / ~44 GB (fp16) | Apache-2.0 (relicensed April 2026; originally Mistral Non-Production) | IDE autocomplete / fill-in-the-middle, 80+ languages |
+| [StarCoder2-15B](https://huggingface.co/bigcode/starcoder2-15b) | 15B (dense) | 16K (4K sliding window) | ~10 GB (Q4) / ~32 GB (fp16) | BigCode OpenRAIL-M | Transparent training data (Software Heritage IDs), fill-in-the-middle |
+| [Granite-4.1-8B](https://huggingface.co/ibm-granite/granite-4.1-8b) | 8B (dense) | up to 512K | ~6 GB (Q4) / ~16 GB (fp16) | Apache-2.0 | Long-context enterprise coding, RAG, and tool calling |
+| [Seed-Coder-8B-Instruct](https://huggingface.co/ByteDance-Seed/Seed-Coder-8B-Instruct) | 8B (dense) | 32K | ~6 GB (Q4) / ~16 GB (fp16) | Apache-2.0 | Lightweight code generation, self-curated training data |
+| [CodeGemma 7B](https://huggingface.co/google/codegemma-7b-it) | 7B (dense) | 8K | ~6 GB (Q4) / ~16 GB (fp16) | Gemma Terms of Use (commercial allowed) | Fast code completion on modest hardware |
 
-- Both variants share the Qwen3-Coder architecture, tuned specifically for agentic coding workflows (tool use, long-context repo understanding) rather than general chat.
-- The 480B model targets server/multi-GPU deployment; 30B-A3B is the practical choice for local or single-GPU use given its much lower active-parameter footprint.
-- For general-purpose models that also perform reasonably at code (e.g. DeepSeek-V3.1), see [General AI](#1-general-ai).
+- Both Qwen3-Coder variants share the same architecture, tuned specifically for agentic coding workflows (tool use, long-context repo understanding) rather than general chat. The 480B model targets server/multi-GPU deployment; 30B-A3B is the practical local/single-GPU choice.
+- **MiniMax-M2**: sparse MoE with a "tool-first" design for long-horizon software-engineering and live production troubleshooting; the MIT-style license only requires visible attribution at massive commercial scale (100M+ MAU or $30M+ ARR), otherwise unrestricted.
+- **Devstral Small 2507**: built by Mistral AI with All Hands AI specifically for agentic coding; was the #1 open-source model on SWE-bench at release and is light enough for a single RTX 4090 or 32 GB Apple Silicon Mac.
+- **Qwen2.5-Coder-32B-Instruct**: the previous-generation Qwen coding model (dense, not MoE) — still one of the most widely fine-tuned and quantized open coding models due to its broad tooling support.
+- **Codestral 2**: Mistral's dedicated FIM/autocomplete model; the original 22B (2024) shipped under a non-commercial Mistral license, but was relicensed to Apache-2.0 in April 2026 — verify you're using the relicensed weights before commercial use.
+- **StarCoder2-15B**: from the BigCode collaboration (Hugging Face + ServiceNow + NVIDIA); BigCode OpenRAIL-M is an open **responsible-AI license**, not a plain permissive license like Apache/MIT — it includes use-based restrictions, so check the license text for your use case rather than assuming Apache-2.0-equivalent freedom.
+- **Granite-4.1-8B**: IBM's long-context dense model (context extendable to 512K), built for instruction following, tool calling, RAG, and coding — notable for enterprise-friendly Apache-2.0 licensing at very long context.
+- **Seed-Coder-8B-Instruct**: ByteDance Seed's lightweight code model family (also has -Base and -Reasoning variants, the latter at 64K context); notable for a training pipeline where the model curates its own training data.
+- **CodeGemma 7B**: part of the Gemma family, tuned specifically for code completion/chat; smallest context window in this table (8K) but runs comfortably on modest hardware.
+- For general-purpose models that also perform reasonably at code (e.g. DeepSeek-V3.1, GLM-4.6), see [General AI](#1-general-ai).
 
 ---
 
