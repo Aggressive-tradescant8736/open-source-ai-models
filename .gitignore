@@ -1,5 +1,6 @@
 # macOS
 .DS_Store
+CLAUDE.md
 
 # Python virtual environment
 venv/
