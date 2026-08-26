@@ -82,15 +82,12 @@ open-source-ai-models/
 ├── LICENSE
 ├── CODE_OF_CONDUCT.md
 ├── SECURITY.md
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   └── pull_request_template.md
-└── data/
-    ├── models/
-    └── categories/
+└── .github/
+    ├── ISSUE_TEMPLATE/
+    └── pull_request_template.md
 ```
 
-The README is the primary user-facing interface. `data/categories/` holds the category taxonomy reference. `data/models/` holds one Markdown file per category with the structured model tables that feed the README's featured sections.
+Single-file design, intentionally: `README.md` is the entire directory — every category is a numbered section (`## 1. General AI`, `## 2. Coding`, ...) with its model tables inline, plus a Contents TOC, Featured picks, and hardware-tier recommendations at the top. There is no separate `data/` folder — keeping everything in one file mirrors the readability of projects like `codecrafters-io/build-your-own-x` and `alvinreal/awesome-opensource-ai`, while keeping the structured comparison tables (params/VRAM/context/license) that make this a *directory* rather than a plain link list.
 
 ---
 

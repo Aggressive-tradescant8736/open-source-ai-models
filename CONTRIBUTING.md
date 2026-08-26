@@ -11,7 +11,7 @@ Thanks for helping build a directory that's actually useful. This project priori
 5. Verify parameter count, if applicable.
 6. Verify model size, if available.
 7. Verify hardware requirements, if available (never guess VRAM numbers).
-8. Add the correct category and subcategory (see `data/categories/categories.md`).
+8. Add the correct category and subcategory (see the numbered sections in `README.md`).
 9. Add the official source link (GitHub > Hugging Face > project site > docs > paper — in that priority order).
 10. Avoid unsupported claims (no invented benchmarks, no marketing language).
 
@@ -19,9 +19,9 @@ If a piece of information is genuinely unavailable, write `N/A` — do not guess
 
 ## Where model data lives
 
-- `data/models/<category>.md` — one file per top-level category, containing the model tables.
-- `data/categories/categories.md` — the category/subcategory taxonomy. Add a new category here first if your model doesn't fit an existing one.
-- `README.md` — surfaces featured/curated picks; only update this if your addition belongs in a "Best of" section with a clear, documented reason.
+Everything lives directly in `README.md` — there is no separate `data/` folder. Find the numbered category section that matches your model (e.g. `## 2. Coding`) and add a row to its table. If your model doesn't fit an existing category, propose a new numbered section (keep the taxonomy in mind: General AI, Coding, Computer Vision, Document AI, Image Generation, Video, Audio & Speech, Multimodal, Retrieval, Language, Agents, Lightweight & Edge AI).
+
+Only touch the **Featured** section at the top if your addition genuinely belongs in a "Best of" pick, with a clear documented reason (benchmark, license advantage, hardware tier it uniquely fills).
 
 ## Entry format
 
