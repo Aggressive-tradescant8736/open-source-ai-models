@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/logo.png" alt="open-source-ai-models logo" width="200" />
+</div>
+
 # Open Source AI Models
 
 > A curated directory of open-source and open-weight AI models for developers, researchers, and AI builders.
