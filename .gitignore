@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Python virtual environment
+venv/
+.venv/
+.env/
+env/
+
+# Python cache files
+*.pyc
+__pycache__/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Data and large files (exclude automatically generated or large datasets)
+# You may want to uncomment the following line if you have large data files that shouldn't be version controlled
+# data/
+
+# Other common ignores
+.DS_Store
+.DS_Store?
+.Trashes
+ehthumbs.db
+Thumbs.db
